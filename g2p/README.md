@@ -1,7 +1,4 @@
-# yesnodocker tutorial [![Apache2](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-
-This part of the tutorial will guide you some basic functionalities and operations of [Kaldi](http://kaldi-asr.org/) ASR toolkit.
-
+# Sequitur G2P tutorial [![Apache2](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 This part of the tutorial describes how to train and use [Sequitur](https://www-i6.informatik.rwth-aachen.de/web/Software/g2p.html). Sequitur is already installed in your Kaldi docker image.
 
