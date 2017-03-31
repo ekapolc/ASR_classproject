@@ -11,7 +11,7 @@ source ./path.sh
 
 ## Step 1 - Training
 
-Sequitur accepts the training data in a very simple format. One line for each pronunciation. Each line starts with a word followed by phonemes separated by spaces.
+Sequitur accepts the training data in a very simple format. One line for each pronunciation. Each line starts with a word followed by phonemes separated by spaces. We provide the file dic5k.formatted.txt as your training lexicon. The lexicon is modified from the lexicon provided in NECTEC's [Lotus Corpus](https://www.nectec.or.th/corpus/index.php?league=sa)
 
 To train do
 ```bash
