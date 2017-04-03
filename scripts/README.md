@@ -18,7 +18,7 @@ This is a neural network model trained on Gowajee corpus.
 
 ## Step 1 - Creating L and G fst
 
-Download prepare_dict.sh from this git repository. To use do
+Download prepare_dict.sh from this git repository. To use it, do
 
 ```bash
 ./prepare_dict.sh <mylexicon.txt> <mylm.arpa> <exp/nnet2_online/phones.txt> <data/local/dict> <data/lang>
@@ -51,10 +51,12 @@ utils/mkgraph.sh data/lang exp/nnet2_online exp/nnet2_online/graph
 
 Construct a `data/test` and `data/dev` with your data. These two folders must have `wav.scp`, `utt2spk`, `spk2utt`, and `text`.
 
-To run decode one `data/dev` do,
+To run decoding on `data/dev` do,
 
 ```bash
-steps/online/nnet2/decode.sh --config conf/decode.config --cmd utils/run.pl --nj 4 --per-utt true --online false exp/nnet2_online/graph data/dev exp/nnet2_online/decode_dev
+steps/online/nnet2/decode.sh --config conf/decode.config --cmd utils/run.pl \
+  --nj 4 --per-utt true --online false exp/nnet2_online/graph \
+  data/dev exp/nnet2_online/decode_dev
 ```
 
 This will output results to `exp/nnet2_online/decode_dev`. The `nj` flag splits the job into 4 parts, which can be executed in parallel. First let's look at the WER of our results
@@ -68,7 +70,8 @@ This spits out the WER for each Language Model Weight (LMWT) and Word Insertion 
 To look at individual outputs, try
 
 ```bash
-utils/int2sym.pl -f 2- exp/nnet2_online/graph_test/words.txt exp/nnet2_online/decode_test/scoring/10.0.0.tra > answer.txt
+utils/int2sym.pl -f 2- exp/nnet2_online/graph_test/words.txt \
+  exp/nnet2_online/decode_test/scoring/10.0.0.tra > answer.txt
 ```
 
-`answer.txt` will have the best hypothesis according at LMWT of 10 and WIP of 0. Are the answers reasonable. You might want to make your task simpler if the recognizer gives too many errors.
+`answer.txt` will have the best hypothesis at LMWT of 10 and WIP of 0. Are the answers reasonable? You might want to make your task simpler if the recognizer gives too many errors.
