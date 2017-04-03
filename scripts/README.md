@@ -47,7 +47,7 @@ Use the following command to construct HCLG in `exp/nnet2_online/graph`. H and C
 utils/mkgraph.sh data/lang exp/nnet2_online exp/nnet2_online/graph
 ```
 
-### Step 3 - Decoding
+## Step 3 - Decoding
 
 Construct a `data/test` and `data/dev` with your data. These two folders must have `wav.scp`, `utt2spk`, `spk2utt`, and `text`.
 
