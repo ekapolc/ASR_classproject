@@ -14,7 +14,7 @@ First download the provided AM (`AM.tar.gz`) from the git repository. Copy it to
 tar -xvzf AM.tar.gz
 ```
 
-This is a neural network model trained on Gowajee corpus.
+This is a neural network model trained on Gowajee corpus. To give you a sense of how good the AM is. This was trained on data from 8 groups and test on a different group. The WER is ~40%
 
 ## Step 1 - Creating L and G fst
 
