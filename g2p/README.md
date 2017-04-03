@@ -39,7 +39,7 @@ This will report two types of error. The string error is the percentage of incor
 
 From the report, you should see that the model has less than 1% error for both types.
 
-### Using the G2P
+## Step 2 - Using the G2P
 
 To use the G2P do
 
@@ -53,7 +53,7 @@ This will generate the most likely pronunciation for each word. To generate more
 g2p.py --model model-5 --encoding UTF-8 --apply testlex.txt --variants-number 3 > g2plex.txt
 ```
 
-### Using in the project
+## Step 3 - Correction for the project
 
 Edit the G2P output so that the pronunciations are correct. The file should be in the format of 
 ```bash
