@@ -52,3 +52,11 @@ This will generate the most likely pronunciation for each word. To generate more
 ```bash
 g2p.py --model model-5 --encoding UTF-8 --apply testlex.txt --variants-number 3 > g2plex.txt
 ```
+
+### Using in the project
+
+Edit the G2P output manually so that the pronunciations are correct. The file should be in the format of 
+``
+<word1> <pronunciation1>
+<word2> <pronunciation2>
+``
