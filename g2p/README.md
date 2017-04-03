@@ -55,8 +55,8 @@ g2p.py --model model-5 --encoding UTF-8 --apply testlex.txt --variants-number 3 
 
 ### Using in the project
 
-Edit the G2P output manually so that the pronunciations are correct. The file should be in the format of 
-``
+Edit the G2P output so that the pronunciations are correct. The file should be in the format of 
+```bash
 <word1> <pronunciation1>
 <word2> <pronunciation2>
-``
+```
