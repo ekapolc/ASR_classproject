@@ -4,8 +4,6 @@ This tutorial is edited from https://github.com/keighrim/kaldi-yesno-tutorial/bl
 
 This tutorial will guide you some basic functionalities and operations of [Kaldi](http://kaldi-asr.org/) ASR toolkit.
 
-Project Kaldi is released under the Apache 2.0 license, so is this tutorial.
-
 You can go the the recipe in Kaldi by
 
 ```bash
@@ -198,7 +196,7 @@ First extract mel-frequency cepstral coefficients.
 steps/make_mfcc.sh --nj <N> <INPUT_DIR> <LOG_DIR> <OUTPUT_DIR> 
 ```
 
-* `--nj <N>` : number of processors, defaults to 4
+* `--nj <N>` : number of processors, defaults to 4. Kaldi splits the processes by speaker information. Therefore, `nj` must be lesser than or equal to the number of speakers in `<INPUT_DIR>`. For this simple tutorial which has 1 speaker, `nj` must be 1.
 * `<INPUT_DIR>` : where we put our 'data' of training set
 * `<LOG_DIR>` : directory to dumb log files. Let's put output to `exp/make_mfcc/train_yesno`, following Kaldi recipes convention
 * `<OUTPUT_DIR>` : Directory to put the features. The convention uses `mfcc/train`
