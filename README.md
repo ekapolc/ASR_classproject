@@ -200,8 +200,8 @@ steps/make_mfcc.sh --nj <N> <INPUT_DIR> <LOG_DIR> <OUTPUT_DIR>
 
 * `--nj <N>` : number of processors, defaults to 4
 * `<INPUT_DIR>` : where we put our 'data' of training set
-* `<LOG_DIR>` : directory to dumb log files
-* `<OUTPUT_DIR>` : let's put output to `exp/make_mfcc/train_yesno`, following Kaldi recipes convention.
+* `<LOG_DIR>` : directory to dumb log files. Let's put output to `exp/make_mfcc/train_yesno`, following Kaldi recipes convention
+* `<OUTPUT_DIR>` : Directory to put the features. The convention uses `mfcc/train`
 
 Now normalize cepstral features
 
