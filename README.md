@@ -85,9 +85,9 @@ To call the script do
 local/prepare_data.sh waves_yesno
 ```
 
-Finish the code to generate each set of 4 files, using the lists of file names, then put files in corresponding directories. (`data/train_yesno`, `data/test_yesno`)
+Run to generate each set of 4 files for the training and test set (`data/train_yesno`, `data/test_yesno`).
 
-Kaldi has a scrip that clean up any possible errors in the data
+Kaldi has a scrip that clean up any possible errors in the data. Run
 
 ```bash
 utils/fix_data_dir.sh data/train_yesno/
