@@ -203,12 +203,14 @@ steps/make_mfcc.sh --nj <N> <INPUT_DIR> <LOG_DIR> <OUTPUT_DIR>
 * `<LOG_DIR>` : directory to dumb log files. Let's put output to `exp/make_mfcc/train_yesno`, following Kaldi recipes convention
 * `<OUTPUT_DIR>` : Directory to put the features. The convention uses `mfcc/train`
 
-Now normalize cepstral features
+Now normalize cepstral features using Cepstral Mean Normalization just like we did in our previous homework. This step also does an extra variance normalization. Thus, the process is called Cepstral Mean and Variance Normalization (CMVN).
 
 ```bash
 steps/compute_cmvn_stats.sh <INPUT_DIR> <LOG_DIR> <OUTPUT_DIR>
 ```
 `<INPUT_DIR>`, `<LOG_DIR>`, and `<OUTPUT_DIR>` are the same as above.
+
+The two scripts will create `wav.scp` and `cmvn.scp` which specifies where the computed MFCC and CMVN are. `wav.scp` and `cmvn.scp` are just text files with just `<utt_id> <path_to_data>` for each line. With this setup, by passing the `data/train` directory to a Kaldi script, you are passing various information, such as the transcription, the location of the wav file, or the MFCC features.
 
 **Note** that these shell scripts (`.sh`) are all pipelines through Kaldi binaries with trivial text processing on the fly. To see which commands were actually executed, see log files in `<LOG_DIR>`. Or even better, see inside the scripts. For details on specific Kaldi commands, refer to [the official documentation](http://kaldi-asr.org/doc/tools.html).
 
