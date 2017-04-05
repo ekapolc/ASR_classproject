@@ -143,7 +143,7 @@ Thus we need an additional phone "SIL" representing silence. And it can be happe
 ```bash
 echo "SIL" > data/local/dict/silence_phones.txt
 echo "SIL" > data/local/dict/optional_silence.txt
-mv dict/phones.txt data/local/dict/nonsilence_phones.txt
+mv data/local/dict/phones.txt data/local/dict/nonsilence_phones.txt
 ```
 
 Now amend lexicon to include the silence as well.
@@ -195,21 +195,22 @@ Once we have all data ready, it's time to extract features for GMM training.
 First extract mel-frequency cepstral coefficients.
 
 ```bash
-steps/make_mfcc.sh --nj <N> <INPUT_DIR> <OUTPUT_DIR> 
+steps/make_mfcc.sh --nj <N> <INPUT_DIR> <LOG_DIR> <OUTPUT_DIR> 
 ```
 
 * `--nj <N>` : number of processors, defaults to 4
 * `<INPUT_DIR>` : where we put our 'data' of training set
+* `<LOG_DIR>` : directory to dumb log files
 * `<OUTPUT_DIR>` : let's put output to `exp/make_mfcc/train_yesno`, following Kaldi recipes convention.
 
 Now normalize cepstral features
 
 ```bash
-steps/compute_cmvn_stats.sh <INPUT_DIR> <OUTPUT_DIR>
+steps/compute_cmvn_stats.sh <INPUT_DIR> <LOG_DIR> <OUTPUT_DIR>
 ```
-`<INPUT_DIR>` and `<OUTPUT_DIR>` are the same as above.
+`<INPUT_DIR>`, `<LOG_DIR>`, and `<OUTPUT_DIR>` are the same as above.
 
-**Note** that these shell scripts (`.sh`) are all pipelines through Kaldi binaries with trivial text processing on the fly. To see which commands were actually executed, see log files in `<OUTPUT_DIR>`. Or even better, see inside the scripts. For details on specific Kaldi commands, refer to [the official documentation](http://kaldi-asr.org/doc/tools.html).
+**Note** that these shell scripts (`.sh`) are all pipelines through Kaldi binaries with trivial text processing on the fly. To see which commands were actually executed, see log files in `<LOG_DIR>`. Or even better, see inside the scripts. For details on specific Kaldi commands, refer to [the official documentation](http://kaldi-asr.org/doc/tools.html).
 
 ### Monophone model training
 
