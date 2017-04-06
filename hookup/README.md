@@ -53,7 +53,7 @@ In this part you will need the client code to send requests. Get the client here
 
 To run the client code you will need a couple python packages, including ws4py version 0.3.2. This can be done by using `pip install --user ws4py==0.3.2`. You may also need simplejson and pyaudio which can be also installed using pip.
 
-Now try passing a wavefile to the server.
+Now try passing a wavefile to the server by a websocket.
 
 ```bash
 python client.py -u ws://localhost:8080/client/ws/speech -r 32000 <testfile>.wav
@@ -63,7 +63,7 @@ where `-r` specifies the byte rate per second of the wavefile (or mp3). We use 1
 
 This is how you hook-up any application to Kaldi running on a Server
 
-There are other use cases. If you are interested, see Tamel's repository at https://github.com/alumae/kaldi-gstreamer-server for details.
+There are other use cases, such as [a javascript client](http://kaljurand.github.io/dictate.js), or a HTTP-based API. This way you can send audio via a PUT or POST request to http://server:port/client/dynamic/recognize and read the JSON ouput. If you are interested, see Tamel's repository at https://github.com/alumae/kaldi-gstreamer-server for details.
 
 Credits:
 
