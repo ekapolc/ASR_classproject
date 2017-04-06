@@ -1,6 +1,6 @@
 # Kaldi Gstreamer Tutorial [![Apache2](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-This part of the tutorial describes how setup and use [kaldi-gstreamer-server](https://github.com/alumae/kaldi-gstreamer-server). kaldi-gstreamer is a real-time speech recognition server based on Kaldi.
+This part of the tutorial describes how to setup and use [kaldi-gstreamer-server](https://github.com/alumae/kaldi-gstreamer-server). kaldi-gstreamer is a real-time speech recognition server based on Kaldi.
 
 First, download the image for the server (~900 MB)
 
