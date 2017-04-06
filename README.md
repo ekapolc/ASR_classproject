@@ -176,7 +176,7 @@ We're using `--position-dependent-phones` flag to be false in our tiny, tiny toy
 ### Defining sequence of the blocks: Language model
 
 We are given a sample uni-gram language model for the yesno data. 
-You'll find a `arpa` formatted language model inside `lm` directory. 
+You'll find a `arpa` formatted language model inside `data/local` directory. 
 However, again, the language model also needs to be converted into a FST.
 For that, Kaldi also comes with a number of programs.
 In this example, we will use the script, `local/prepare_lm.sh`.
