@@ -63,10 +63,8 @@ where `-r` specifies the byte rate per second of the wavefile (or mp3). We use 1
 
 This is how you hook-up any application to Kaldi running on a Server
 
-There are other use cases. If you are interested, see
+There are other use cases. If you are interested, see Tamel's repository at https://github.com/alumae/kaldi-gstreamer-server for details.
 
-Tamel's repository at https://github.com/alumae/kaldi-gstreamer-server for details.
-
-Other links:
+Credits:
 
 * Docker gstreamer repository https://github.com/jcsilva/docker-kaldi-gstreamer-server
