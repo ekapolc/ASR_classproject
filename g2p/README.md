@@ -11,7 +11,7 @@ source ./path.sh
 
 ## Step 1 - Training
 
-Sequitur accepts the training data in a very simple format. One line for each pronunciation. Each line starts with a word followed by phonemes separated by spaces. We provide the file dic5k.formatted.txt as your training lexicon. The lexicon is modified from the lexicon provided in NECTEC's [Lotus Corpus](https://www.nectec.or.th/corpus/index.php?league=sa)
+Sequitur accepts the training data in a very simple format. One line for each pronunciation. Each line starts with a word followed by phonemes separated by spaces. We provide the file dic5k.formatted.txt as your training lexicon (in this repository). The lexicon is modified from the lexicon provided in NECTEC's [Lotus Corpus](https://www.nectec.or.th/corpus/index.php?league=sa)
 
 To train do
 ```bash
@@ -46,6 +46,8 @@ To use the G2P do
 ```bash
 g2p.py --model model-5 --encoding UTF-8 --apply testlex.txt > g2plex.txt
 ```
+
+where testlex.txt has the words that you want to generate pronunciations, one word per line.
 
 This will generate the most likely pronunciation for each word. To generate more than 1 pronunciations, do
 
