@@ -63,7 +63,7 @@ where `-r` specifies the byte rate per second of the wavefile (or mp3). We use 1
 
 This is how you hook-up any application to Kaldi running on a Server
 
-There are other use cases, such as [a javascript client](http://kaljurand.github.io/dictate.js), or a HTTP-based API. This way you can send audio via a PUT or POST request to http://server:port/client/dynamic/recognize and read the JSON ouput. If you are interested, see Tamel's repository at https://github.com/alumae/kaldi-gstreamer-server for details.
+There are other use cases, such as [a javascript client](http://kaljurand.github.io/dictate.js), or a HTTP-based API. This way you can send audio via a PUT or POST request to `http://server:port/client/dynamic/recognize` and read the JSON ouput. If you are interested, see [Tamel's repository](https://github.com/alumae/kaldi-gstreamer-server) for details.
 
 Credits:
 
