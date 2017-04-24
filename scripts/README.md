@@ -65,7 +65,7 @@ This will output results to `exp/nnet2_online/decode_dev`. The `nj` flag splits 
 grep WER exp/nnet2_online/decode_dev/wer_*
 ```
 
-This spits out the WER for each Language Model Weight (LMWT) and Word Insertion Penalty (WIP). For example, the file `wer_10_0.0` uses LMWT of 10 and WIP of 0. Note down which combination gives the best results. Depending on your language model, you might want to test more combinations. To do so add `--scoring-opts "--min_lmwt <min_weight> --max_lmwt <max_weight> --words_in_penalty <list_of_penalty>"` when running `decode.sh`.
+This spits out the WER for each Language Model Weight (LMWT) and Word Insertion Penalty (WIP). For example, the file `wer_10_0.0` uses LMWT of 10 and WIP of 0. Note down which combination gives the best results. Depending on your language model, you might want to test more combinations. To do so add `--scoring-opts "--min-lmwt <min_weight> --max-lmwt <max_weight> --word_ins_penalty <list_of_penalty>"` when running `decode.sh`.
 
 To look at individual outputs, try
 
