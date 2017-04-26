@@ -18,10 +18,10 @@ This is a neural network model trained on Gowajee corpus. To give you a sense of
 
 ## Step 1 - Creating L and G fst
 
-Download prepare_dict.sh from this git repository. To use it, do
+Download prepare_LG.sh from this git repository. To use it, do
 
 ```bash
-./prepare_dict.sh <mylexicon.txt> <mylm.arpa> <exp/nnet2_online/phones.txt> <data/local/dict> <data/lang>
+./prepare_LG.sh <mylexicon.txt> <mylm.arpa> <exp/nnet2_online/phones.txt> <data/local/dict> <data/lang>
 ```
 
 * `mylexicon.txt`
@@ -38,6 +38,8 @@ Download prepare_dict.sh from this git repository. To use it, do
 	* Formatted lexicon.
 * Output : `data/lang`
 	* Directory containing `L.fst` and `G.fst`
+
+If you get a permission denied error, try setting the permission using `chmod`
 
 ## Step 2 - Creating HCLG fst
 
