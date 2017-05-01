@@ -57,7 +57,7 @@ To run decoding on `data/dev` do,
 
 ```bash
 steps/online/nnet2/decode.sh --config conf/decode.config --cmd utils/run.pl \
-  --nj 4 --per-utt true --online false exp/nnet2_online/graph \
+  --nj 4 --per-utt true --online true exp/nnet2_online/graph \
   data/dev exp/nnet2_online/decode_dev
 ```
 
