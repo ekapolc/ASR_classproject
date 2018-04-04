@@ -49,7 +49,7 @@ Check if the process starts successfully by looking at the log file at `/opt/wor
 
 ## Step 2 - Sending decoding requests
 
-In this part you will need the client code to send requests. Get the client here [client.py](https://raw.githubusercontent.com/alumae/kaldi-gstreamer-server/master/kaldigstserver/client.py)
+In this part you will need the client code to send requests. Get the client here [client.py](https://raw.githubusercontent.com/alumae/kaldi-gstreamer-server/master/kaldigstserver/client.py) (python2)
 
 To run the client code you will need a couple python packages, including ws4py version 0.3.2. This can be done by using `pip install --user ws4py==0.3.2`. You may also need simplejson and pyaudio which can be also installed using pip.
 
