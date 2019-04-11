@@ -5,7 +5,7 @@ This part of the tutorial describes how to setup and use [kaldi-gstreamer-server
 First, download the image for the server (~900 MB)
 
 ```bash
-docker pull jcsilva/docker-kaldi-gstreamer-server
+docker pull burin010n/kaldi-gstreamer-server:latest
 ```
 
 This image contains the minimum things to run the recognition server. It only contains some parts of Kaldi.
