@@ -60,16 +60,11 @@ To run decoding on `data/dev` do,
 ```bash
 steps/online/nnet3/decode.sh \          
   --acwt 1.0 --post-decode-acwt 10.0 --nj 4 \
-  exp/chain/tree_a_sp/graph <data/dev> exp/chain/tdnn1r_sp_online/<decode_dev>
+  exp/chain/tree_a_sp/graph data/dev exp/chain/tdnn1r_sp_online/decode_dev
 ```
 
-*  `<data/test>`
-	* A data directory you want to decode, (`data/test` and `data/dev`)
-*  `<decode_test>`
-	* An output directory contains decoded results (`decode_test` and `decode_dev`)
-
-
-The `nj` flag splits the job into 4 parts, which can be executed in parallel. It must not exceed the number of speakers in the test set. First let's look at the WER of our results
+This will output results to `exp/chain/tdnn1r_sp_online/decode_dev`.
+The `nj` flag splits the job into 4 parts, which can be executed in parallel. It must not exceed the number of speakers in the dev set. First let's look at the WER of our results
 
 ```bash
 grep WER exp/chain/tdnn1r_sp_online/decode_dev/wer_*
