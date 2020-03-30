@@ -47,7 +47,7 @@ Use the following command to construct HCLG in `exp/chain/tree_a_sp/graph`. H an
 
 ```bash
 utils/mkgraph.sh \
-  --self-loop-scale 1.0 data/lang_test \
+  --self-loop-scale 1.0 data/lang \
   exp/chain/tree_a_sp exp/chain/tree_a_sp/graph
 ```
 
