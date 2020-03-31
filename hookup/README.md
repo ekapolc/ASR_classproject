@@ -23,10 +23,10 @@ The final directory structure of danijel3 repository contains three parts,
 * `web` A website plug with a real-time speech recognizer service
 * `model` contains description of how to build image of 
    * `model` Our model will be listed here
-      * `graph` You had generated this at `exp/chain/tree_a_sp/graph`   
+      * `graph` You had generated this at `exp/chain/tree_a_sp/graph`
          * HCLG.fst
-         * words.txt
-      * `model` This is an AM we provided you `exp/chain/tdnn1p_sp_online`    
+         * words.txt : This maps HCLG output symbols to words in the vocabulary
+      * `model` This is an AM we provided you `exp/chain/tdnn1p_sp_online`
          * final.mdl
          * tree
          * conf/
@@ -47,55 +47,41 @@ After finish step1, we go back to the upper folder.
 ```bash
 cd ..
 ```
-`Dockerfile` lists  decoding parameters
+`Dockerfile` lists decoding parameters. Some interesting are explained below,
+* `min-active` : minimum active nodes in beam search. Effects run-time performance.
+* `max-active` : maximum active nodes in beam search. Effects run-time performance.
+* `beam` : Beam size for pruning in beam search.
+* `acoustic-scale` : Acoustic Model Weight. This should corresponds to the configuration that gives the best WER. For example, if LMWT = 11 gives the best WER for your HCLG on your dev set, use AMWT = (1/11) \* 10 = 0.9091.
 
-* Model location part
-    * `word-syms` : Path to `words.txt` in your graph directory. This maps HCLG output symbols to words in the vocabulary.
-    * `fst` : Path to the `HCLG.fst` in your graph directory that you generated.
-    * `mfcc-config` : Path to `mfcc.conf` under the `conf` directory in your Kaldi model.
-    * `ivector-extraction-config` : Path to `ivector_extractor.conf` under the `conf` directory in your Kaldi model.
-* Decoding paramters part
-    * `max-active` : maximum active nodes in beam search. Effects run-time performance.
-    * `beam` : Beam size for pruning in beam search.
-    * `acoustic-scale` : Acoustic Model Weight. This should corresponds to the configuration that gives the best WER. For example, if LMWT = 11 gives the best WER for your HCLG on your dev set, use AMWT = 1/11 = 0.09091
-    * `num-nbest` : number of outputs n-best you want as the recognition output. Recall that the recognizer can output not just the best hypothesis but the top n best hypothesis.
+#### Attention!!!
+An AM we provided you, has a special model structure.
+To make it run correctly, you have to add `"--frame-subsampling-factor=3"` inside the ENTRYPOINT list. Put it somewhere before `port-num`.
 
-Put `sample_nnet2.yaml` and the ASR models (`HCLG.fst` and `words.txt` you generated and the AM provided in the previous tutorial) into a `model` folder. We will mount it to the recognition server instance.
-
+After you finish the configurations, try to build an image
 ```bash
-docker run -it -p 8080:80 -v <path_to_model>:/opt/models jcsilva/docker-kaldi-gstreamer-server:latest /bin/bash
+docker build -t mymodel .
 ```
 
-The option `-p` publish the ports to the host machine running the instance. So the host can talk to the machine via that port. This is how we will ask the recognition server to give us ASR outputs.
-
-Edit `sample_nnet2.yaml` to points to the correct files. Also edit `ivector_extractor.conf` so that it points to the correct files in the recognition server.
-
-Now we can finally start the server,
-
+## Step 3 - Sending decoding requests
+You can test by run the image individually and nc (netcat) the raw wav file inside it.
 ```bash
-/opt/start.sh -y /opt/models/sample_nnet2.yaml
+docker run --rm -p 5050:5050 mymodel
+sox example_audio.wav -t raw - | nc localhost 5050
 ```
 
-Check if the process starts successfully by looking at the log file at `/opt/worker.log` see it starts sucessfully. Usually it will fails if you put the wrong paths to some files.
-
-## Step 2 - Sending decoding requests
-
-In this part you will need the client code to send requests. Get the client here [client.py](https://raw.githubusercontent.com/alumae/kaldi-gstreamer-server/master/kaldigstserver/client.py) (python2)
-
-To run the client code you will need a couple python packages, including ws4py version 0.3.2. This can be done by using `pip install --user ws4py==0.3.2`. You may also need simplejson and pyaudio which can be also installed using pip.
-
-Now try passing a wavefile to the server by a websocket.
-
+Or you can run the website and use an audio recoder there.
 ```bash
-python client.py -u ws://localhost:8080/client/ws/speech -r 32000 <testfile>.wav
+cd ..
+cp  docker-compose.yml  docker-compose.yml.tmp
+sed 's/\danijel3\/kaldi-online-tcp:aspire/mymodel/' docker-compose.yml.tmp > docker-compose.yml
+rm docker-compose.yml.tmp
+docker-compose up -d
 ```
 
-where `-r` specifies the byte rate per second of the wavefile (or mp3). We use 16000 Hz sampling rate with 16 bits per sample, so the byte rate is 16/8*16000=32000.
-
-This is how you hook-up any application to Kaldi running on a Server
-
-There are other use cases, such as [a javascript client](http://kaljurand.github.io/dictate.js), or a HTTP-based API. This way you can send audio via a PUT or POST request to `http://server:port/client/dynamic/recognize` and read the JSON ouput. If you are interested, see [Tamel's repository](https://github.com/alumae/kaldi-gstreamer-server) for details.
+The web is available at `localhost:8080`. 
+Once it's running, you can run `docker-compose logs -f` to monitor the logs of the running servers.
+At any time you can run `docker-compose stop` to temporarily shutdown and `docker-compose start` to restart the service. Finally, you can run `docker-compose down` to stop and remove the containers altogether.
 
 Credits:
 
-* Docker gstreamer repository https://github.com/jcsilva/docker-kaldi-gstreamer-server
+* Docker KaldiWebRTC repository https://github.com/danijel3/KaldiWebrtcServer
