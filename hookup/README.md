@@ -52,7 +52,7 @@ cd model
 * `min-active` : minimum active nodes in beam search. Effects run-time performance.
 * `max-active` : maximum active nodes in beam search. Effects run-time performance.
 * `beam` : Beam size for pruning in beam search.
-* `acoustic-scale` : Acoustic Model Weight. This should corresponds to the configuration that gives the best WER. For example, if LMWT = 11 gives the best WER for your HCLG on your dev set, use AMWT = (1/11) \* 10 = 0.9091.
+* `acoustic-scale` : Acoustic Model Weight. This should corresponds to the configuration that gives the best WER. For example, if LMWT = 11 gives the best WER for your HCLG on your dev set, use AMWT = (1/11) = 0.09091. However, we provided you a special structure AM. Your AMWT should be multiply by 10 before using. If you get AMWT = 0.09091, then use 0.9091.
 
 
 After you finish the configurations, try to build an image
