@@ -15,7 +15,7 @@ We will emphasize [the instruction of how to use your model in the main reposito
 
 For simplicity, we will use the docker part.
 ```bash
-cd docker
+cd KaldiWebrtcServer/docker
 ```
 
 The final directory structure of danijel3 repository contains three parts,
