@@ -73,7 +73,7 @@ You can test by
 ```bash
 docker run --rm -p 5050:5050 mymodel
 ```
-Open a new terminal and run `sox example_audio.wav -t raw - | nc localhost 5050`. 
+Open a new terminal and run `sox example_audio.wav -t raw - | nc localhost 5050`. For simplicity, you can also test with `nc localhost 5050 < example_audio.wav` but I'm not guarantee will it works.
 
 If you do this way, closing a terminal will not stop the running server. To stop it, you can run `docker stop <CONTAINER ID>`.
 You can found `CONTAINER ID` from runnning `docker ps`.
