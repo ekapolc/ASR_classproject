@@ -43,9 +43,9 @@ For example, `/kaldi/egs/librispeech/s5/exp/chain/tdnn1p_sp_online/ivector_extra
 
 ## Step 2 - Building model image
 
-After finish step1, we go back to the upper folder.
+After finish step1, go inside model folder
 ```bash
-cd ..
+cd model
 ```
 `Dockerfile` lists decoding parameters. Some interesting are explained below,
 * `min-active` : minimum active nodes in beam search. Effects run-time performance.
