@@ -1,22 +1,53 @@
-# Kaldi Gstreamer Tutorial [![Apache2](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+# Kaldi WebRTC Tutorial [![Apache2](http://img.shields.io/badge/license-APACHE2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-This part of the tutorial describes how to setup and use [kaldi-gstreamer-server](https://github.com/alumae/kaldi-gstreamer-server). kaldi-gstreamer is a real-time speech recognition server based on Kaldi.
+This part of the tutorial describes how to setup and use [kaldi-webrtc-server](https://github.com/danijel3/KaldiWebrtcServer). kaldi-webrtc-server is a wrapper on-top of a real-time speech recognition server based on Kaldi.
 
-First, download the image for the server (~900 MB)
-
+First, download danijel3's repository
 ```bash
-docker pull burin010n/kaldi-gstreamer-server:latest
+git clone https://github.com/danijel3/KaldiWebrtcServer.git
 ```
 
-This image contains the minimum things to run the recognition server. It only contains some parts of Kaldi.
+This repository shows an example of how to plug Kaldi real-time recognizer into a website.
 
-## Step 1 - Setting up the server
 
-The instance can launch multiple recognition workers. Each worker can be configured to use the Kaldi model of your choice. An example configuration file is provided.
+## Step 1 - Setting up the model
+We will emphasize [the instruction of how to use your model in the main repository](https://github.com/danijel3/KaldiWebrtcServer/tree/master/docker#making-your-own-kaldimodel-image).
 
-Open `sample_nnet2.yaml`
+For simplicity, we will use the docker part.
+```bash
+cd docker
+```
 
-In there you will see several paramters, here are some parts of interest
+The final directory structure of danijel3 repository contains three parts,
+* `kaldi` contains description of a Kaldi image which contains only decoding parts
+* `web` A website plug with a real-time speech recognizer service
+* `model` contains description of how to build image of 
+   * `model` Our model will be listed here
+      * `graph` You had generated this at `exp/chain/tree_a_sp/graph`   
+         * HCLG.fst
+         * words.txt
+      * `model` This is an AM we provided you `exp/chain/tdnn1p_sp_online`    
+         * final.mdl
+         * tree
+         * conf/
+         * ivectror_extractor/
+
+At first, we have to create folder `model/model/`.
+```bash
+mkdir -p model/model/graph && mkdir -p model/model/model
+```
+Then, you copy files mentioned above into the directory.
+
+Paths inside `ivector_extractor.conf` and `online.conf`, in `model/conf/` directory, have to be corrected.
+For example, `/kaldi/egs/librispeech/s5/exp/chain/tdnn1p_sp_online/ivector_extractor/final.ie` should be changed to `/model/model/ivector_extractor/final.ie`. Make sure everything paths point at the right location.
+
+## Step 2 - Building model image
+
+After finish step1, we go back to the upper folder.
+```bash
+cd ..
+```
+`Dockerfile` lists  decoding parameters
 
 * Model location part
     * `word-syms` : Path to `words.txt` in your graph directory. This maps HCLG output symbols to words in the vocabulary.
