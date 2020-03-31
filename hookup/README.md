@@ -73,11 +73,20 @@ You can found `CONTAINER ID` from runnning `docker ps`.
 
 
 2. run the website and use an audio recoder there.
+
+This section use docker-compose, it will run multiple docker containers and link them together. To use your model, You have to set kaldi image in Dockerfile as `mymodel` and set sampling rate in servers.json as 16000.
+
 ```bash
 cd ..
-cp  docker-compose.yml  docker-compose.yml.tmp
-sed 's/\danijel3\/kaldi-online-tcp:aspire/mymodel/' docker-compose.yml.tmp > docker-compose.yml
-rm docker-compose.yml.tmp
+cp  docker-compose.yml  tmp && \
+sed 's/\danijel3\/kaldi-online-tcp:aspire/mymodel/' tmp > docker-compose. && \
+cp  servers.json  tmp && \
+sed 's/8000/16000/' tmp > servers.json && \
+rm tmp
+```
+
+After finish the configuration, run
+```bash
 docker-compose up -d
 ```
 
