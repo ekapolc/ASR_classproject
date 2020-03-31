@@ -36,7 +36,7 @@ At first, we have to create folder `model/model/`.
 ```bash
 mkdir -p model/model/graph && mkdir -p model/model/model
 ```
-Then, you copy files mentioned above into the directory.
+Then, copy files mentioned above into the directory.
 
 Paths inside `ivector_extractor.conf` and `online.conf`, in `model/conf/` directory, have to be corrected.
 For example, `/kaldi/egs/librispeech/s5/exp/chain/tdnn1p_sp_online/ivector_extractor/final.ie` should be changed to `/model/model/ivector_extractor/final.ie`. Make sure everything paths point at the right location.
@@ -55,7 +55,12 @@ cd ..
 
 #### Attention!!!
 An AM we provided you, has a special model structure.
-To make it run correctly, you have to add `"--frame-subsampling-factor=3"` inside the ENTRYPOINT list. Put it somewhere before `port-num`.
+To make it run correctly, you have to add `"--frame-subsampling-factor=3"` inside the ENTRYPOINT list. Put it somewhere before `port-num`. The following command will do this for you,
+```bash
+cp  Dockerfile  Dockerfile.tmp
+sed 's/"--port-num/"--frame-subsampling-factor=3","--port-num/' Dockerfile.tmp > Dockerfile
+rm Dockerfile.tmp
+```
 
 After you finish the configurations, try to build an image
 ```bash
@@ -63,13 +68,17 @@ docker build -t mymodel .
 ```
 
 ## Step 3 - Sending decoding requests
-You can test by run the image individually and nc (netcat) the raw wav file inside it.
+You can test by 
+1. run the image individually and nc (netcat) the raw wav file inside it.
 ```bash
 docker run --rm -p 5050:5050 mymodel
 sox example_audio.wav -t raw - | nc localhost 5050
 ```
+If you do this way, closing a terminal will not stop the running server. To stop it, you can run `docker stop <CONTAINER ID>`.
+You can found `CONTAINER ID` from runnning `docker ps`.
 
-Or you can run the website and use an audio recoder there.
+
+2. run the website and use an audio recoder there.
 ```bash
 cd ..
 cp  docker-compose.yml  docker-compose.yml.tmp
@@ -81,6 +90,8 @@ docker-compose up -d
 The web is available at `localhost:8080`. 
 Once it's running, you can run `docker-compose logs -f` to monitor the logs of the running servers.
 At any time you can run `docker-compose stop` to temporarily shutdown and `docker-compose start` to restart the service. Finally, you can run `docker-compose down` to stop and remove the containers altogether.
+
+If you change anythings, you have to remove model server, rebuild the image, and start a new one. Your change won't make any effects if you not rebuild the image.
 
 Credits:
 
