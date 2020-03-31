@@ -1,5 +1,7 @@
 # Things you need to know to complete the class project for ASR class
 
+**This tutorial assumes you are using the kaldi docker image from burin010n/kaldi for any Kaldi commands.**
+
 This repository is divided into 4 parts. You should complete them in order
 
 **1. Kaldi tutorial on yes/no utterances [yesno](yesnotutorial)**
@@ -16,4 +18,4 @@ Describes how to decode your own utterance using the provided AM
 
 **4. How to hookup Kaldi with your application in streaming mode [hookup](hookup)**
 
-Describes how to use kaldigstreamer with other applications
+Describes how to use Kaldi's online decoding with other applications

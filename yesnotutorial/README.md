@@ -4,6 +4,14 @@ This tutorial is edited from https://github.com/keighrim/kaldi-yesno-tutorial/bl
 
 This tutorial will guide you some basic functionalities and operations of [Kaldi](http://kaldi-asr.org/) ASR toolkit.
 
+First of all, run a Kaldi docker image  
+```
+docker run -it -v <path_to_backup_folder>:/data burin010n/kaldi /bin/bash
+```
+By running this command, path_to_backup_folder in the host machine will be mounted to /data in the docker container.
+First time will take a long time because you have to pull the image (2.77 GB) from DockerHub.
+
+
 You can go the the recipe in Kaldi by
 
 ```bash
