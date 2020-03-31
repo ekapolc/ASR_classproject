@@ -1,5 +1,7 @@
 # Things you need to know to complete the class project for ASR class
 
+**This tutorial assumes you are using the kaldi docker image from burin010n/kaldi for any Kaldi commands.**
+
 This repository is divided into 4 parts. You should complete them in order
 
 **1. Kaldi tutorial on yes/no utterances [yesno](yesnotutorial)**
