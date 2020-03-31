@@ -16,4 +16,4 @@ Describes how to decode your own utterance using the provided AM
 
 **4. How to hookup Kaldi with your application in streaming mode [hookup](hookup)**
 
-Describes how to use kaldigstreamer with other applications
+Describes how to use Kaldi's online decoding with other applications
