@@ -48,6 +48,7 @@ After finish step1, go inside model folder
 cd model
 ```
 `Dockerfile` lists decoding parameters. Some interesting are explained below,
+* `samp-freq` : sampling frequency. An AM we provided are traind on 16kHz. This should be set as 16000.
 * `min-active` : minimum active nodes in beam search. Effects run-time performance.
 * `max-active` : maximum active nodes in beam search. Effects run-time performance.
 * `beam` : Beam size for pruning in beam search.
