@@ -54,14 +54,6 @@ cd model
 * `beam` : Beam size for pruning in beam search.
 * `acoustic-scale` : Acoustic Model Weight. This should corresponds to the configuration that gives the best WER. For example, if LMWT = 11 gives the best WER for your HCLG on your dev set, use AMWT = (1/11) \* 10 = 0.9091.
 
-#### Attention!!!
-An AM we provided you, has a special model structure.
-To make it run correctly, you have to add `"--frame-subsampling-factor=3"` inside the ENTRYPOINT list. Put it somewhere before `port-num`. The following command will do this for you,
-```bash
-cp  Dockerfile  Dockerfile.tmp
-sed 's/"--port-num/"--frame-subsampling-factor=3","--port-num/' Dockerfile.tmp > Dockerfile
-rm Dockerfile.tmp
-```
 
 After you finish the configurations, try to build an image
 ```bash
