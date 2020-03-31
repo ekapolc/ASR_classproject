@@ -79,7 +79,7 @@ This section use docker-compose, it will run multiple docker containers and link
 ```bash
 cd ..
 cp  docker-compose.yml  tmp && \
-sed 's/\danijel3\/kaldi-online-tcp:aspire/mymodel/' tmp > docker-compose. && \
+sed 's/\danijel3\/kaldi-online-tcp:aspire/mymodel/' tmp > docker-compose.yml && \
 cp  servers.json  tmp && \
 sed 's/8000/16000/' tmp > servers.json && \
 rm tmp
