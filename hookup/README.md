@@ -72,8 +72,9 @@ You can test by
 1. run the image individually and nc (netcat) the raw wav file inside it.
 ```bash
 docker run --rm -p 5050:5050 mymodel
-sox example_audio.wav -t raw - | nc localhost 5050
 ```
+Open a new terminal and run `sox example_audio.wav -t raw - | nc localhost 5050`. 
+
 If you do this way, closing a terminal will not stop the running server. To stop it, you can run `docker stop <CONTAINER ID>`.
 You can found `CONTAINER ID` from runnning `docker ps`.
 
