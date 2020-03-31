@@ -60,14 +60,14 @@ To run decoding on `data/dev` do,
 ```bash
 steps/online/nnet3/decode.sh \          
   --acwt 1.0 --post-decode-acwt 10.0 --nj 4 \
-  exp/chain/tree_a_sp/graph data/dev exp/chain/tdnn1r_sp_online/decode_dev
+  exp/chain/tree_a_sp/graph data/dev exp/chain/tdnn1p_sp_online/decode_dev
 ```
 
-This will output results to `exp/chain/tdnn1r_sp_online/decode_dev`.
+This will output results to `exp/chain/tdnn1p_sp_online/decode_dev`.
 The `nj` flag splits the job into 4 parts, which can be executed in parallel. It must not exceed the number of speakers in the dev set. First let's look at the WER of our results
 
 ```bash
-grep WER exp/chain/tdnn1r_sp_online/decode_dev/wer_*
+grep WER exp/chain/tdnn1p_sp_online/decode_dev/wer_*
 ```
 
 This spits out the WER for each Language Model Weight (LMWT) and Word Insertion Penalty (WIP). For example, the file `wer_10_0.0` uses LMWT of 10 and WIP of 0. Note down which combination gives the best results. Depending on your language model, you might want to test more combinations. To do so add `--scoring-opts "--min-lmwt <min_weight> --max-lmwt <max_weight> --word_ins_penalty <list_of_penalty>"` when running `decode.sh`.
@@ -76,7 +76,7 @@ To look at individual outputs, try
 
 ```bash
 utils/int2sym.pl -f 2- exp/chain/tree_a_sp/graph/words.txt \
-   exp/chain/tdnn1r_sp_online/decode_dev/scoring/10.0.0.tra > answer.txt
+   exp/chain/tdnn1p_sp_online/decode_dev/scoring/10.0.0.tra > answer.txt
 ```
 
 `answer.txt` will have the best hypothesis at LMWT of 10 and WIP of 0. Are the answers reasonable? You might want to make your task simpler if the recognizer gives too many errors.
