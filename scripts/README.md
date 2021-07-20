@@ -60,7 +60,7 @@ To run decoding on `data/dev` do,
 ```bash
 steps/online/nnet3/decode.sh \          
   --acwt 1.0 --post-decode-acwt 10.0 --nj 4 \
-  exp/chain/tree_a_sp/graph data/dev exp/chain/tdnn1r_sp_online/decode_dev
+  exp/chain/tree_a_sp/graph data/dev exp/chain/tdnn1g_sp_online/decode_dev
 ```
 
 This will output results to `exp/chain/tdnn1r_sp_online/decode_dev`.
